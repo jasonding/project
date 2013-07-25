@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 让strut2让spring经行管理 begin -->
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.xwork.chaining.copyFieldErrors" value="true" />
+	
+	<!-- 全局action  begin-->
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="characterEncodingInterceptor" class="com.project.web.interceptor.CharacterEncodingInterceptor"></interceptor>
+			<interceptor-stack name="defaultInterceptorStack">
+				<interceptor-ref name="characterEncodingInterceptor" />
+				<interceptor-ref name="completeStack" />
+			</interceptor-stack>
+		</interceptors>
+	</package>
+	
+	<!-- 用户登录和登出action begin -->
+    <package name="login" namespace="/" extends="default">
+        <action name="input"  class="LoginAction" method="input">
+        	<result name="input">/login.jsp</result>
+        </action>
+
+        <action name="logout"  class="LoginAction" method="logout">
+        	<result name="input">/login.jsp</result>
+        </action>
+        
+        <action name="login"  class="LoginAction" method="login">
+        	<result name="login" type="redirectAction">
+        		<param name="actionName">main</param>
+        	</result>
+        	<result name="input" type="chain">
+        		<param name="actionName">input</param>
+        	</result>
+        </action>
+        
+        <action name="main" class="LoginAction" method="main">
+        	<result name="success">
+        		<param name="location">/WEB-INF/page/index.jsp</param>
+        	</result>
+        </action>
+    </package>
+	<!-- 用户登录和登出action end-->
+    
+    <!-- 用户管理action begin -->
+    <package name="user" namespace="/user" extends="default">
+        <action name="input" class="UserAction" method="input">
+        	<result name="input">/WEB-INF/page/user/userInput.jsp</result>
+        </action>
+       
+        <action name="list" class="UserAction" method="list">
+        	<result name="list">/WEB-INF/page/user/userList.jsp</result>
+        </action>
+       
+        <action name="manage" class="UserAction" method="manage">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">list</param>
+        		<param name="namespace">/user</param>
+        	</result>
+        	<result name="input" type="chain">
+        		<param name="actionName">input</param>
+        		<param name="namespace">/user</param>
+        	</result>
+        </action>
+    </package>
+    <!-- 用户管理action end -->
+    
+    <!-- 权限管理action begin -->
+    <package name="privilege" namespace="/privilege" extends="default">
+    	<default-interceptor-ref name="defaultInterceptorStack" />
+        <action name="input" class="PrivilegeAction" method="input">
+        	<result name="input">/WEB-INF/page/user/privilegeInput.jsp</result>
+        </action>
+        
+        <action name="list" class="PrivilegeAction" method="list">
+        	<result name="list">/WEB-INF/page/user/privilegeList.jsp</result>
+        </action>
+        <action name="delete" class="PrivilegeAction" method="delete">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">list</param>
+        		<param name="namespace">/privilege</param>
+        	</result>
+        </action>
+        
+        <action name="manage" class="PrivilegeAction" method="manage">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">list</param>
+        		<param name="namespace">/privilege</param>
+        		<param name="params.parentPrivilege">${params.parentPrivilege}</param>
+        	</result>
+        	<result name="input" type="chain">
+        		<param name="actionName">input</param>
+        		<param name="namespace">/privilege</param>
+        	</result>
+        </action>
+    </package>
+    <!-- 权限管理action begin -->
+    
+    <!-- 角色action begin -->
+    <package name="role" namespace="/role" extends="default">
+        <action name="input" class="RoleAction" method="input">
+        	<result name="input">/WEB-INF/page/user/roleInput.jsp</result>
+        </action>
+        <action name="list" class="RoleAction" method="list">
+        	<result name="list">/WEB-INF/page/user/roleList.jsp</result>
+        </action>
+        <action name="delete" class="RoleAction" method="delete">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">list</param>
+        		<param name="namespace">/role</param>
+        	</result>
+        </action>
+        <action name="manage" class="RoleAction" method="manage">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">list</param>
+        		<param name="namespace">/role</param>
+        	</result>
+        	<result name="input" type="chain">
+        		<param name="actionName">input</param>
+        		<param name="namespace">/role</param>
+        	</result>
+        </action>
+    </package>
+    <!-- 角色action end -->
+    
+    
+    
+    <!-- 相册action begin -->
+    <package name="album" namespace="/album" extends="default">
+        <action name="input" class="AlbumAction" method="input">
+        	<result name="input">/WEB-INF/page/user/roleInput.jsp</result>
+        </action>
+        <action name="list" class="AlbumAction" method="list">
+        	<result name="list">/WEB-INF/page/user/roleList.jsp</result>
+        </action>
+        <action name="delete" class="AlbumAction" method="delete">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">list</param>
+        		<param name="namespace">/role</param>
+        	</result>
+        </action>
+        <action name="manage" class="AlbumAction" method="manage">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">list</param>
+        		<param name="namespace">/role</param>
+        	</result>
+        	<result name="input" type="chain">
+        		<param name="actionName">input</param>
+        		<param name="namespace">/role</param>
+        	</result>
+        </action>
+    </package>
+    <!-- 相册action end -->
+    
+    <!-- test Josn begin -->
+    <!-- 
+    <package name="example"  extends="json-default">
+	     <action name="JSONExample" class="com.system.struts.JsonStrustAction">
+	        <result type="json"/>
+	     </action>
+  	</package>
+  	-->
+    <!-- test Josn end -->
+    
+</struts>
