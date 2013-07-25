@@ -1,6 +1,9 @@
+#myeclipse ignore file
 .myeclipse/
 .settings/
 .classpath
 .mymetadata
-.project
 WebRoot/WEB-INF/classes
+
+#project name different project has different name
+.project
