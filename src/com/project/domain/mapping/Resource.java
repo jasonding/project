@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.project.domain.mapping.Privilege;
+import com.project.enumeration.DisplayType;
 import com.project.enumeration.ResourceType;
 
 /**
@@ -34,6 +35,7 @@ public class Resource implements Serializable {
 
 	private Long id;
 	private ResourceType resourceType;
+	private DisplayType displayType;
 	private String resourceName;
 	private String resource;
 	private int orderView;
@@ -55,6 +57,12 @@ public class Resource implements Serializable {
 		return resourceType;
 	}
 	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name="display_type",length=4)
+	public DisplayType getDisplayType() {
+		return displayType;
+	}
+
 	@Column(name="resource",length=500)
 	public String getResource() {
 		return resource;
@@ -96,6 +104,10 @@ public class Resource implements Serializable {
 	
 	public void setResourceType(ResourceType resourceType) {
 		this.resourceType = resourceType;
+	}
+	
+	public void setDisplayType(DisplayType displayType) {
+		this.displayType = displayType;
 	}
 	
 	public void setResourceName(String resourceName) {

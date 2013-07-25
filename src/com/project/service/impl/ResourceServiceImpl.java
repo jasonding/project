@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import com.project.dao.ResourceDao;
 import com.project.domain.PageView;
 import com.project.domain.mapping.Resource;
+import com.project.enumeration.ResourceType;
 import com.project.service.ResourceService;
+import com.project.util.NullUtil;
 
 /**
  * @author dingjs
@@ -28,38 +30,47 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<Resource> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return resourceDao.findAll();
 	}
 
 	@Override
 	public Resource getById(Long id) {
-		// TODO Auto-generated method stub
+		return resourceDao.getById(id);
+	}
+
+	@Override
+	public PageView<Resource> getPageViewList(Map<String, String> params, Integer pageSize, Integer currentPage) {
+		return null;
+	}
+
+	@Override
+	public List<Resource> getMenu() {
 		return null;
 	}
 
 	@Override
 	public PageView<Resource> getPageViewList(Map<String, String> params,
-			Integer pageSize, Integer currentPage) {
+			List<Resource> resourceList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void save(Resource resource) {
-		// TODO Auto-generated method stub
-		
+		if(NullUtil.isNull(resource)) return ;
+		resourceDao.save(resource);
 	}
 
 	@Override
 	public void update(Resource resource) {
-		// TODO Auto-generated method stub
+		if(NullUtil.isNull(resource)) return ;
+		resourceDao.update(resource);
 		
 	}
 
 	@Override
 	public void delete(Resource resource) {
-		// TODO Auto-generated method stub
-		
+		if(NullUtil.isNull(resource)) return ;
+		resourceDao.delete(resource);
 	}
 }

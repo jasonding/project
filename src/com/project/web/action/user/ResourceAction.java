@@ -37,6 +37,11 @@ public class ResourceAction extends BaseAction {
 		return LIST;
 	}
 	
+	public String listMenu() {
+		
+		return LIST;
+	}
+	
 	public String manage() {
 		resourceService.save(resource);
 		return SUCCESS;
