@@ -47,7 +47,7 @@ public class Privilege implements Serializable {
 		this.name = name;
 	}
 	
-	@ManyToMany(fetch=FetchType.EAGER,targetEntity=Resource.class)
+	@ManyToMany(fetch=FetchType.LAZY,targetEntity=Resource.class)
 	@JoinTable(name="privilege_resource",
 		 joinColumns=@JoinColumn(name="privilege_id"),
 		   inverseJoinColumns=@JoinColumn(name="resource_id")

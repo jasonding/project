@@ -24,22 +24,27 @@ public class RoleServiceImpl implements RoleService {
 		this.roleDao = roleDao;
 	}
 
+	@Override
 	public List<Role> findAll() {
 		return roleDao.findAll();
 	}
 
+	@Override
 	public Role getById(Long id) {
 		return roleDao.getById(id);
 	}
 
+	@Override
 	public void save(Role role) {
 		roleDao.save(role);
 	}
 
+	@Override
 	public void update(Role role) {
 		roleDao.update(role);
 	}
 
+	@Override
 	public void delete(Role role) {
 		roleDao.delete(role);
 	}

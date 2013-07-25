@@ -76,13 +76,4 @@ public interface DaoBase<T> {
 	 * @return
 	 */
 	public List<T> findAll();
-	
-	/**
-	 * 清楚中间表数据
-	 * @param sql
-	 * @param serializableId
-	 */
-	public void clearStagingTables(String sql,Serializable... serializableIds); 
-
-	
 }

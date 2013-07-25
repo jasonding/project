@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.domain.PageView;
-import com.project.domain.Privilege;
-import com.project.domain.PrivilegePK;
+import com.project.domain.mapping.Privilege;
 
 /**
  * @author dingjs
@@ -22,10 +21,4 @@ public interface PrivilegeService {
 	public List<Privilege> findAll();
 	
 	public PageView<Privilege> getPageViewList(Map<String, String> params, Integer pageSize, Integer currentPage);
-	
-	public Privilege getById(PrivilegePK privilegePK);
-	
-	public List<Privilege> findTopPrivilegeList();
-	
-	public void delete(PrivilegePK privilegePK);
 }

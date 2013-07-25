@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -40,7 +39,7 @@ public abstract class DaoBaseImpl<T> implements DaoBase<T> {
 		clazz = (Class<T>) type.getActualTypeArguments()[0];
 	}
 
-	
+	@Override
 	public void delete(T entity) {
 		try {
 			this.getSession().delete(entity);
@@ -50,11 +49,13 @@ public abstract class DaoBaseImpl<T> implements DaoBase<T> {
 		}
 	}
 
+	@Override
 	public T getById(Serializable id) {
 		Object object = this.getSession().get(clazz, id);
 		return (T) object;
 	}
 
+	@Override
 	public List<T> findByIds(final Collection<Serializable> ids) {
 		StringBuilder hql = new StringBuilder("FROM");
 		hql.append(clazz.getSimpleName()).append("WHERE 1=1");
@@ -78,10 +79,12 @@ public abstract class DaoBaseImpl<T> implements DaoBase<T> {
 		return query.list();
 	}
 
+	@Override
 	public List<T> findAll() {
 		return this.getSession().createQuery("FROM " + clazz.getSimpleName()).list();
 	}
 
+	@Override
 	public void save(T entity) {
 		try {
 			this.getSession().save(entity);
@@ -91,6 +94,7 @@ public abstract class DaoBaseImpl<T> implements DaoBase<T> {
 		}
 	}
 
+	@Override
 	public void update(T entity) {
 		try {
 			this.getSession().update(entity);
@@ -100,8 +104,7 @@ public abstract class DaoBaseImpl<T> implements DaoBase<T> {
 		}
 	}
 	
-	
-
+	@Override
 	public Integer getCount(Map<String, String> params) {
 		StringBuilder hql = new StringBuilder(" SELECT COUNT(*) FROM ");
 		hql.append(clazz.getSimpleName()).append(" WHERE 1=1 ");
@@ -113,10 +116,12 @@ public abstract class DaoBaseImpl<T> implements DaoBase<T> {
 		return ((Number) query.uniqueResult()).intValue();
 	}
 
+	@Override
 	public List<T> getPageList(Map<String, String> params, Integer firstRow,Integer maxRow) {
 		return getPageList(params, null,firstRow, maxRow);
 	}
 
+	@Override
 	public List<T> getPageList(Map<String, String> params, LinkedHashMap<String, String> orderMap, Integer firstRow, Integer maxRow) {
 		StringBuilder hql = new StringBuilder(" FROM ");
 		hql.append(clazz.getSimpleName()).append(" WHERE 1=1 ");
@@ -131,6 +136,7 @@ public abstract class DaoBaseImpl<T> implements DaoBase<T> {
 		return query.setFirstResult(firstRow).setMaxResults(maxRow).list();
 	}
 
+	@Override
 	public void merge(T entity) {
 		try {
 			this.getSession().merge(entity);
@@ -167,14 +173,4 @@ public abstract class DaoBaseImpl<T> implements DaoBase<T> {
 	 * @return
 	 */
 	protected abstract List<Object> buildQueryCondition(Map<String,String> params,StringBuilder hql);
-
-	public void clearStagingTables(String sql, Serializable ... serializableIds) {
-		SQLQuery createSQLQuery = this.getSession().createSQLQuery(sql);
-		for (int i=0; i<serializableIds.length; i++) {
-			createSQLQuery.setParameter(i, serializableIds[i]);
-		}
-		createSQLQuery.executeUpdate();
-	}
-	
-	
 }

@@ -3,7 +3,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<!-- 让strut2让spring经行管理 begin -->
+	<!-- 让strut2让spring进行管理 begin -->
 	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<constant name="struts.xwork.chaining.copyFieldErrors" value="true" />
@@ -12,10 +12,6 @@
 	<package name="default" extends="struts-default">
 		<interceptors>
 			<interceptor name="characterEncodingInterceptor" class="com.project.web.interceptor.CharacterEncodingInterceptor"></interceptor>
-			<interceptor-stack name="defaultInterceptorStack">
-				<interceptor-ref name="characterEncodingInterceptor" />
-				<interceptor-ref name="completeStack" />
-			</interceptor-stack>
 		</interceptors>
 	</package>
 	
@@ -69,9 +65,37 @@
     </package>
     <!-- 用户管理action end -->
     
+    <!-- 资源管理action begin -->
+    <package name="resource" namespace="/resource" extends="default">
+        <action name="input" class="ResourceAction" method="input">
+        	<result name="input">/WEB-INF/page/user/resourceInput.jsp</result>
+        </action>
+        
+        <action name="list" class="ResourceAction" method="list">
+        	<result name="list">/WEB-INF/page/user/resourceList.jsp</result>
+        </action>
+        <action name="delete" class="ResourceAction" method="delete">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">list</param>
+        		<param name="namespace">/resource</param>
+        	</result>
+        </action>
+        
+        <action name="manage" class="ResourceAction" method="manage">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">list</param>
+        		<param name="namespace">/resource</param>
+        	</result>
+        	<result name="input" type="chain">
+        		<param name="actionName">input</param>
+        		<param name="namespace">/resource</param>
+        	</result>
+        </action>
+    </package>
+    <!-- 资源管理action end -->
+    
     <!-- 权限管理action begin -->
     <package name="privilege" namespace="/privilege" extends="default">
-    	<default-interceptor-ref name="defaultInterceptorStack" />
         <action name="input" class="PrivilegeAction" method="input">
         	<result name="input">/WEB-INF/page/user/privilegeInput.jsp</result>
         </action>
@@ -98,7 +122,7 @@
         	</result>
         </action>
     </package>
-    <!-- 权限管理action begin -->
+    <!-- 权限管理action end -->
     
     <!-- 角色action begin -->
     <package name="role" namespace="/role" extends="default">

@@ -45,6 +45,7 @@ public class PrivilegeDaoImpl extends DaoBaseImpl<Privilege> implements Privileg
 		return list;
 	}
 
+	@Override
 	public List<Privilege> findTopPrivilegeList() {
 		return getSession().createQuery("FROM Privilege WHERE parentPrivilege IS NULL").list();
 	}

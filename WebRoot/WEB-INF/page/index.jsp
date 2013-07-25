@@ -10,37 +10,19 @@
 		<script type="text/javascript" src="${ctx}/js/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="${ctx}/js/jquery.easyui.min.js"></script>
 		<script type="text/javascript">
-			$(function(){
+			/*$(function(){
 				$.messager.show({
 					title:'Title',
 					msg:'欢迎进去project',
 					timeout:3000,
 					showType:'slide'
 				});
-			});
+			});*/
 		</script>
 </head>
 <body class="easyui-layout">
 	<div region="north" border="false" style="height:60px;background:#B3DFDA;"><h2>PROJECT</h2></div>
 	<div region="west" split="true" title="West" style="width:150px;padding:10px;">
-		<ul id="tt1" class="easyui-tree" animate="true" dnd="true">
-			<s:iterator value="menuList">
-			<li state="closed">
-				<span><s:property value="privilegePK.module"/></span>
-				<s:iterator value="childPrivilegeSet">
-					<ul>
-						<li>
-						<span>
-							<s:url var="privilegeUrl" namespace="%{nameSpace}" action="list" method="list"></s:url>
-							<a href="<s:property value="#privilegeUrl"/>" target="center_data"
-								title="<s:property value="privilegePK.module"/>"><s:property value="privilegePK.module"/></a>
-						</span>
-						</li>
-					</ul>
-				</s:iterator>
-			</li>			
-			</s:iterator>
-		</ul>
 		<ul id="tt1" class="easyui-tree" animate="true" dnd="true">
 			<li state="closed">
 				<span>系统管理</span>
@@ -48,6 +30,7 @@
 					<li><span><a href="<s:url namespace="/user" action="list" method="list"></s:url>" target="center_data" title="用户列表">用户列表</a></span></li>
 					<li><span><a href="<s:url namespace="/role" action="list" method="list"></s:url>" target="center_data" title="角色列表">角色列表</a></span></li>
 					<li><span><a href="<s:url namespace="/privilege" action="list" method="list"></s:url>" target="center_data" title="权限列表">权限列表</a></span></li>
+					<li><span><a href="<s:url namespace="/resource" action="list" method="list"></s:url>" target="center_data" title="资源列表">资源列表</a></span></li>
 				</ul>
 			</li>
 		</ul>
@@ -58,7 +41,7 @@
 								<s:property value="name"/>&nbsp;&nbsp;
 							</s:iterator>
 						</span>
-		&nbsp;&nbsp;&nbsp;&nbsp; <a href='<s:url namespace="/" action="logout" method="logout"></s:url>'>退出</a>
+	<a href='<s:url namespace="/" action="logout" method="logout"></s:url>'>退出</a>
 	">
 			<iframe id="center_data" name="center_data" src="${ctx}/index.jsp" frameborder="0" width="100%" height="100%"></iframe>
 	</div>

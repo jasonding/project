@@ -27,6 +27,7 @@ public class UserDaoImpl extends DaoBaseImpl<User> implements UserDao  {
 		return list;
 	}
 
+	@Override
 	public User findByUserName(String userName) {
 		return (User) getSession().createQuery("FROM User WHERE name=:name")//
 		.setParameter("name", userName)//

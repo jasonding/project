@@ -2,14 +2,16 @@ package com.project.enumeration;
 
 /**
  * 资源类型
- * 
  * @author dingjs
  * 
  */
 public enum ResourceType {
 	DEFAULT("DEFAULT", "默认"),
+	
 	MENU("MENU","菜单"), 
+	
 	LINK("LINK", "链接"), 
+	
 	BUTTON("BUTTON", "按钮");
 
 	private String value;

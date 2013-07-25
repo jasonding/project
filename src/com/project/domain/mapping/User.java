@@ -19,9 +19,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 import com.project.enumeration.Gender;
 
 @Entity
@@ -90,7 +87,7 @@ public class User {
 			   joinColumns=@JoinColumn(name="user_id"),
 			   inverseJoinColumns=@JoinColumn(name="role_id")
 	)
-	@Cascade({CascadeType.REFRESH})
+	//@Cascade({CascadeType.REFRESH})
 	public Set<Role> getRoleSet() {
 		return roleSet;
 	}

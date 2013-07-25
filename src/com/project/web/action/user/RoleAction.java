@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import com.project.domain.Privilege;
 import com.project.domain.mapping.Role;
-import com.project.service.PrivilegeService;
 import com.project.service.RoleService;
-import com.project.util.web.PrivilegeTreeUtil;
 import com.project.web.action.BaseAction;
 
 /**
@@ -21,7 +19,6 @@ import com.project.web.action.BaseAction;
 public class RoleAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 	
-	private PrivilegeService privilegeService;
 	private RoleService roleService;
 	
 	private List<Privilege> privilegeList;
@@ -55,14 +52,10 @@ public class RoleAction extends BaseAction {
 			role = roleService.getById(role.getId());
 		}
 		//privilegeList = privilegeService.findAll();
-		privilegeList = PrivilegeTreeUtil.getPrivilegeTreeList(privilegeService.findTopPrivilegeList());;
+		//privilegeList = PrivilegeTreeUtil.getPrivilegeTreeList(privilegeService.findTopPrivilegeList());;
 		return INPUT;
 	}
-	@Autowired
-	public void setPrivilegeService(PrivilegeService privilegeService) {
-		this.privilegeService = privilegeService;
-	}
-
+	
 	@Autowired
 	public void setRoleService(RoleService roleService) {
 		this.roleService = roleService;

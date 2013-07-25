@@ -2,16 +2,11 @@ package com.project.util.web;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import com.project.domain.Privilege;
 import com.project.domain.mapping.Role;
-import com.project.enumeration.ResourceType;
-import com.project.util.CollectionToMapUtils;
 import com.project.util.NullUtil;
 
 
@@ -50,6 +45,7 @@ public class PrivilegeTreeUtil {
 	
 	public static List<Privilege> getPrivilegeTreeMenuList(Set<Role> roleSet) {
 		if(NullUtil.isNullOrEmpty(roleSet)) return Collections.emptyList();
+		/*
 		Map<Privilege,Privilege> privilegeMap = new LinkedHashMap<Privilege, Privilege>();
 		for (Role role : roleSet) {
 			if(NullUtil.isNull(role)) continue;
@@ -78,6 +74,7 @@ public class PrivilegeTreeUtil {
 			Collections.sort(childPrivilegelist);
 			privilege.setChildPrivilegeSet(new LinkedHashSet<Privilege>(childPrivilegelist));
 		}
-		return topPrivilegeList;
+		 */
+		return null;//topPrivilegeList;
 	}
 }

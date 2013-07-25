@@ -31,10 +31,12 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
+	@Override
 	public List<User> findAll() {
 		return userDao.findAll();
 	}
 
+	@Override
 	public User findByUserName(String userName, String password) {
 		System.out.println(UserServiceImpl.class.getResource("/"));
 		if(NullUtil.isNullOrEmpty(userName) || NullUtil.isNullOrEmpty(password)){
@@ -48,10 +50,12 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
 	public User getById(Long id) {
 		return userDao.getById(id);
 	}
 
+	@Override
 	public PageView<User> getPageViewList(Map<String, String> params, Integer pageSize, Integer currentPage) {
 		if(pageSize == null) {
 			pageSize = Global.INTEGER_DEFAULT_PAGE_SIZE;
@@ -64,6 +68,7 @@ public class UserServiceImpl implements UserService {
 		return new PageView<User>(pageSize, currentPage, recordCount, recordList);
 	}
 
+	@Override
 	public void saveOrUpdate(User user) {
 		if(user == null){
 			//非法数据,抛出异常
@@ -79,6 +84,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
 	public void saveUsers(List<User> list) {
 		for (User user : list) {
 			saveOrUpdate(user);

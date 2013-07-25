@@ -18,7 +18,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.project.domain.Privilege;
 
 /**
  * @author dingjs
@@ -80,10 +79,7 @@ public class Role implements Serializable{
 	@ManyToMany(fetch=FetchType.EAGER,targetEntity=Privilege.class)
 	@JoinTable(name="role_privilege",
 			   joinColumns=@JoinColumn(name="role_id"),
-			   inverseJoinColumns={
-					@JoinColumn(name="module"),
-					@JoinColumn(name="privilege")
-				}
+			   inverseJoinColumns=@JoinColumn(name="privilege_id")
 	)
 	//@Cascade({CascadeType.REFRESH})
 	public Set<Privilege> getPrivilegeSet() {
