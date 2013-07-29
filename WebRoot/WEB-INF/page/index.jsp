@@ -21,7 +21,7 @@
 		</script>
 </head>
 <body class="easyui-layout">
-	<div region="north" border="false" style="height:60px;background:#B3DFDA;"><h2>PROJECT</h2></div>
+	<div region="north" border="false" style="height:60px;background:#B3DFDA;"><h2>GIT GITHUB</h2></div>
 	<div region="west" split="true" title="West" style="width:150px;padding:10px;">
 		<ul id="tt1" class="easyui-tree" animate="true" dnd="true">
 			<li state="closed">
@@ -30,7 +30,7 @@
 					<li><span><a href="<s:url namespace="/user" action="list" method="list"></s:url>" target="center_data" title="用户列表">用户列表</a></span></li>
 					<li><span><a href="<s:url namespace="/role" action="list" method="list"></s:url>" target="center_data" title="角色列表">角色列表</a></span></li>
 					<li><span><a href="<s:url namespace="/privilege" action="list" method="list"></s:url>" target="center_data" title="权限列表">权限列表</a></span></li>
-					<li><span><a href="<s:url namespace="/resource" action="list" method="list"></s:url>" target="center_data" title="资源列表">资源列表</a></span></li>
+					<li><span><a href="<s:url namespace="/resource" action="listMenu" method="listMenu"></s:url>" target="center_data" title="菜单列表">菜单列表</a></span></li>
 				</ul>
 			</li>
 		</ul>

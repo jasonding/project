@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 /**
@@ -122,5 +123,10 @@ public class Role implements Serializable{
 	@Override
 	public String toString() {
 		return "Role [id=" + id + ", name=" + name + "]";
+	}
+	
+	@Transient
+	public String getAuthority() {
+		return "AUTHORITY_" + getId();
 	}
 }

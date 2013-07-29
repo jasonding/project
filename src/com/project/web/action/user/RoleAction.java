@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import com.project.domain.Privilege;
 import com.project.domain.mapping.Role;
-import com.project.service.RoleService;
+import com.project.service.manage.RoleService;
 import com.project.web.action.BaseAction;
 
 /**

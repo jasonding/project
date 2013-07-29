@@ -3,6 +3,7 @@
  */
 package com.project.web.action.user;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Controller;
 
 import com.project.domain.PageView;
 import com.project.domain.mapping.Resource;
-import com.project.service.ResourceService;
+import com.project.service.manage.ResourceService;
 import com.project.util.NullUtil;
 import com.project.web.action.BaseAction;
 
@@ -32,14 +33,16 @@ public class ResourceAction extends BaseAction {
 	private Integer currentPage;
 	private PageView<Resource> pageView;
 
+	private List<Resource> menuList;
+	
 	public String list() {
 		//pageView = resourceService.getPageViewList(params, pageSize, currentPage);
 		return LIST;
 	}
 	
 	public String listMenu() {
-		
-		return LIST;
+		menuList = resourceService.getResourceOnlyMenu();
+		return "menuList";
 	}
 	
 	public String manage() {
@@ -93,6 +96,10 @@ public class ResourceAction extends BaseAction {
 
 	public PageView<Resource> getPageView() {
 		return pageView;
+	}
+
+	public List<Resource> getMenuList() {
+		return menuList;
 	}
 
 	@Autowired

@@ -13,11 +13,13 @@
      </http>
      
      <authentication-manager>
-     	<authentication-provider>
+     	<authentication-provider user-service-ref="userDetailService">
+     		<!-- 
      		<user-service>
      			<user name="user" password="user" authorities="ROLE_USER"/>
      			<user name="admin" password="admin" authorities="ROLE_ADMIN"/>
      		</user-service>
+     		 -->
      	</authentication-provider>
      </authentication-manager>
 </beans:beans>

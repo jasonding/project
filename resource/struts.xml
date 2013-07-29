@@ -74,6 +74,11 @@
         <action name="list" class="ResourceAction" method="list">
         	<result name="list">/WEB-INF/page/user/resourceList.jsp</result>
         </action>
+        
+        <action name="listMenu" class="ResourceAction" method="listMenu">
+        	<result name="menuList">/WEB-INF/page/user/resourceMenuList.jsp</result>
+        </action>
+
         <action name="delete" class="ResourceAction" method="delete">
         	<result name="success" type="redirectAction">
         		<param name="actionName">list</param>

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import com.project.domain.PageView;
 import com.project.domain.Privilege;
-import com.project.service.PrivilegeService;
+import com.project.service.manage.PrivilegeService;
 import com.project.web.action.BaseAction;
 
 /**
