@@ -5,12 +5,14 @@ package com.project.service.manage.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.dao.ResourceDao;
 import com.project.domain.PageView;
+import com.project.domain.mapping.Privilege;
 import com.project.domain.mapping.Resource;
 import com.project.service.manage.ResourceService;
 import com.project.util.NullUtil;
@@ -61,8 +63,30 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
+	public List<Resource> getResourceNoMenuWithRole() {
+		List<Resource> resourceList = resourceDao.getResourceWithNoMenu();
+		for (Resource resource : resourceList) {
+			loadPrivilegeAndRole(resource);
+			if(resource.hasChildren()) {
+				for(Resource childResource : resource.getChildResourceSet()) {
+					loadPrivilegeAndRole(childResource);
+				}
+			}
+		}
+		return resourceList;
+	}
+
+	@Override
 	public void delete(Resource resource) {
 		if(NullUtil.isNull(resource)) return ;
 		resourceDao.delete(resource);
 	}
+	
+	private void loadPrivilegeAndRole(Resource resource) {
+		Set<Privilege> privilegeSet = resource.getPrivilegeSet();
+		for (Privilege privilege : privilegeSet) {
+			privilege.getRoleSet().size();
+		}
+	}
+	
 }

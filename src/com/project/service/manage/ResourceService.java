@@ -28,5 +28,7 @@ public interface ResourceService {
 	
 	public void delete(Resource resource);
 	
+	public List<Resource> getResourceNoMenuWithRole();
+	
 	
 }

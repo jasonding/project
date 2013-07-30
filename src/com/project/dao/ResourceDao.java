@@ -14,4 +14,5 @@ import com.project.domain.mapping.Resource;
  */
 public interface ResourceDao extends DaoBase<Resource> {
 	public List<Resource> getResourceOlnyMenu();
+	public List<Resource> getResourceWithNoMenu();
 }

@@ -35,4 +35,15 @@ public class ResourceImpl extends DaoBaseImpl<Resource> implements ResourceDao {
 				.setParameter(0, ResourceType.MENU)//
 				.list();
 	}
+
+	@Override
+	public List<Resource> getResourceWithNoMenu() {
+		return getSession().createQuery(" FROM Resource WHERE resourceType IN (?, ?, ?) ")//
+		.setParameter(0, ResourceType.DEFAULT)//
+		.setParameter(1, ResourceType.LINK)//
+		.setParameter(2, ResourceType.BUTTON)//
+		.list();
+	}
+	
+	
 }

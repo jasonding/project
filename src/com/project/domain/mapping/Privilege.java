@@ -30,6 +30,8 @@ public class Privilege implements Serializable {
 	private String name;
 	private Set<Resource> resourceSet =  new HashSet<Resource>();
 	
+	private Set<Role> roleSet = new HashSet<Role>();
+	
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -58,5 +60,12 @@ public class Privilege implements Serializable {
 	
 	public void setResourceSet(Set<Resource> resourceSet) {
 		this.resourceSet = resourceSet;
+	}
+	@ManyToMany(mappedBy="privilegeSet",fetch=FetchType.LAZY,targetEntity=Role.class)
+	public Set<Role> getRoleSet() {
+		return roleSet;
+	}
+	public void setRoleSet(Set<Role> roleSet) {
+		this.roleSet = roleSet;
 	}
 }

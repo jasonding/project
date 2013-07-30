@@ -129,4 +129,12 @@ public class Resource implements Serializable {
 	public void setPrivilegeSet(Set<Privilege> privilegeSet) {
 		this.privilegeSet = privilegeSet;
 	}
+	
+	public boolean hasChildren() {
+		if(getChildResourceSet().size() == 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 }

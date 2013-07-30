@@ -127,6 +127,6 @@ public class Role implements Serializable{
 	
 	@Transient
 	public String getAuthority() {
-		return "AUTHORITY_" + getId();
+		return "ROLE_" + getId();
 	}
 }
