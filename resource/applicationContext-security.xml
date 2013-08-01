@@ -4,14 +4,31 @@
 	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd" default-autowire="byName">
-
-	<http auto-config="true">
-		<custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
-		<logout />
+	
+	<http>
+		
+		<form-login 
+			login-page="/input.do"
+			login-processing-url="/login.do"
+			default-target-url="/main.do"
+			authentication-failure-url="/input.do"
+		/>
+		<!-- 
+		 -->
+		<intercept-url pattern="/input.do" filters="none"/>
+		<custom-filter ref="validateRandomCodeFilter" before="FORM_LOGIN_FILTER" />
+		<custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR" />
+		
+		<logout/>
 	</http>
+	<!-- 添加验证码过滤器 -->
+	<beans:bean id="validateRandomCodeFilter" class="com.project.service.security.ValidateRandomCodeFilter">
+		<beans:property name="filterProcessesUrl" value="/login.do" />
+	</beans:bean>
 	
 	<beans:bean id="daoAuthenticationProvider"  class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">  
         <beans:property name="userDetailsService" ref="userDetailService" />  
+        <beans:property name="hideUserNotFoundExceptions" value="false" />  
     </beans:bean>
 	
 	<beans:bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">

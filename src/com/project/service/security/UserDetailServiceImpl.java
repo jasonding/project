@@ -36,6 +36,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
 			throws UsernameNotFoundException, DataAccessException {
 		com.project.domain.mapping.User user = userService.findByUserName(username);
 		
+		if(user == null) throw new UsernameNotFoundException( username + " is not register");
+		
 		//用户访问资源的权限列表
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		for(Role role : user.getRoleSet()) {

@@ -32,7 +32,6 @@ public class MyFilterInvocationSecurityMetadataSource implements
 	
 	@Override
 	public DefaultFilterInvocationSecurityMetadataSource getObject() throws Exception {
-		System.out.println("myFilterInvocationSecurityMetadataSource excute");
 		List<Resource> resourceList = resourceService.getResourceNoMenuWithRole();
 		LinkedHashMap<RequestKey, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<RequestKey, Collection<ConfigAttribute>>();
 		Collection<ConfigAttribute> attributes =null;

@@ -5,7 +5,6 @@ package com.project.web.action.user;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -13,10 +12,8 @@ import org.springframework.stereotype.Controller;
 
 import com.project.constant.WebConstant;
 import com.project.domain.Privilege;
-import com.project.domain.mapping.Role;
 import com.project.domain.mapping.User;
 import com.project.service.manage.UserService;
-import com.project.util.web.PrivilegeTreeUtil;
 import com.project.web.action.BaseAction;
 
 /**

@@ -16,12 +16,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<script type="text/javascript" src="/project/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="${ctx}/js/jquery-1.4.4.min.js"></script>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<script type="text/javascript">
-		var verifyCodeUrl = "/project/randomCode.do?";
+		var verifyCodeUrl = "${ctx}/randomCode.servlet?";
 		$(function() {
 			$('#codeImg').attr('src',verifyCodeUrl + (new Date()).getTime());
 			$('#codeImg').click(function() {
@@ -35,13 +35,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	<div align="center">
 		<s:form action="login" namespace="/" >
-			<s:textfield name="user.name" label="用户名"></s:textfield>
-			<s:password name="user.password" label="密码"></s:password>
+			<s:textfield name="j_username" label="用户名"></s:textfield>
+			<s:password name="j_password" label="密码"></s:password>
 			<s:textfield name="randomCode" label="验证码"/><s:fielderror></s:fielderror>
 			<s:submit method="login" value="登录" align="center"/>
 		</s:form>
+		<s:property value="#session.SPRING_SECURITY_LAST_EXCEPTION.extraInformation"/>
 		<s:debug></s:debug>
-    <br>     
+    <br>  
+    <%
+    
+    Enumeration namesEnumeration = session.getAttributeNames();
+    while(namesEnumeration.hasMoreElements()) {
+    	//System.out.println(namesEnumeration.nextElement());
+    	System.out.println(session.getAttribute(namesEnumeration.nextElement() + ""));
+    }
+    %>  
     <span><img id="codeImg" border=0>再换一张</span>   
 		<s:property value="%{exception.message}"/>${message}
 	</div>

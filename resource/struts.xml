@@ -7,6 +7,7 @@
 	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<constant name="struts.xwork.chaining.copyFieldErrors" value="true" />
+	<constant name="struts.action.extension" value="do" />
 	
 	<!-- 全局action  begin-->
 	<package name="default" extends="struts-default">
