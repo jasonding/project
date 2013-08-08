@@ -15,7 +15,7 @@
 	<!-- 随机生成验证码servlet -->
 	  <servlet>
 	    <servlet-name>randomCode</servlet-name>
-	    <servlet-class>com.project.web.servlet.RandomCode</servlet-class>
+	    <servlet-class>com.project.web.servlet.RandomCodeServlet</servlet-class>
 	  </servlet>
 	  <servlet-mapping>
 	    <servlet-name>randomCode</servlet-name>

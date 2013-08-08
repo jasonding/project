@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 public class ActivitiService {
 	private ProcessEngine processEngine;
 
-	public ProcessEngine getProcessEngine() {
-		return processEngine;
-	}
-
 	@Autowired
 	public void setProcessEngine(ProcessEngine processEngine) {
 		this.processEngine = processEngine;
 	}
+	protected ProcessEngine getProcessEngine() {
+		return processEngine;
+	}
+
 	
 }

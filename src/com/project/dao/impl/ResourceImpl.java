@@ -31,8 +31,8 @@ public class ResourceImpl extends DaoBaseImpl<Resource> implements ResourceDao {
 
 	@Override
 	public List<Resource> getResourceOlnyMenu() {
-		return getSession().createQuery(" FROM Resource WHERE resourceType=? ")//
-				.setParameter(0, ResourceType.MENU)//
+		return getSession().createQuery(" FROM Resource WHERE resourceType=:aa ")//
+				.setParameter("aa", ResourceType.MENU)//
 				.list();
 	}
 

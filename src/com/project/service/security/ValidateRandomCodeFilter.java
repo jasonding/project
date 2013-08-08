@@ -17,7 +17,11 @@ import com.project.util.NullUtil;
 
 public class ValidateRandomCodeFilter implements Filter {
 
+	public static final String SPRING_SECURITY_RANDOM_CODE_KEY = "SPRING_SECURITY_RANDOM_CODE";
+	public static final String SPRING_SECURITY_FORM_RANDOMCODE_KEY = "j_randomCode";
+	
 	private String filterProcessesUrl;
+	private String filterRedirectUrl;
 
 	@Override
 	public void destroy() {
@@ -35,20 +39,25 @@ public class ValidateRandomCodeFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+		
+		httpRequest.getSession().removeAttribute(SPRING_SECURITY_RANDOM_CODE_KEY);
+		
 		if(!requiresAuthentication(httpRequest)) {
 			chain.doFilter(request, response);
 			return ;
 		}
 		
-		String randomCode = httpRequest.getParameter("randomCode");
+		String randomCode = httpRequest.getParameter(SPRING_SECURITY_FORM_RANDOMCODE_KEY);
 		String sessionCode = (String) httpRequest.getSession().getAttribute(WebConstant.WEB_RANDOM_CODE);
 		if(NullUtil.isNullOrEmpty(randomCode) || !randomCode.equalsIgnoreCase(sessionCode)) {
 			HttpSession session = httpRequest.getSession(false);
 	        if (session != null) {
-	        	httpRequest.getSession().setAttribute("SPRING_SECURITY_LAST_EXCEPTION", "验证码不正确");
+	        	httpRequest.getSession().setAttribute(SPRING_SECURITY_RANDOM_CODE_KEY, "验证码不正确");
 	        }
-	        httpResponse.sendRedirect(httpRequest.getContextPath() + "/input.do");
+	        httpRequest.getSession().removeAttribute(WebConstant.WEB_RANDOM_CODE);
+	        httpResponse.sendRedirect(httpRequest.getContextPath() + getFilterRedirectUrl());
 		}else {
+			httpRequest.getSession().removeAttribute(WebConstant.WEB_RANDOM_CODE);
 			chain.doFilter(request, response);
 		}
 	}
@@ -67,10 +76,10 @@ public class ValidateRandomCodeFilter implements Filter {
 		}
 
 		if ("".equals(request.getContextPath())) {
-			return uri.endsWith(filterProcessesUrl);
+			return uri.endsWith(getFilterProcessesUrl());
 		}
 
-		return uri.endsWith(request.getContextPath() + filterProcessesUrl);
+		return uri.endsWith(request.getContextPath() + getFilterProcessesUrl());
 	}
 
 	public String getFilterProcessesUrl() {
@@ -79,6 +88,14 @@ public class ValidateRandomCodeFilter implements Filter {
 
 	public void setFilterProcessesUrl(String filterProcessesUrl) {
 		this.filterProcessesUrl = filterProcessesUrl;
+	}
+
+	public String getFilterRedirectUrl() {
+		return filterRedirectUrl;
+	}
+
+	public void setFilterRedirectUrl(String filterRedirectUrl) {
+		this.filterRedirectUrl = filterRedirectUrl;
 	}
 
 }

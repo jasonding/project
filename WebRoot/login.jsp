@@ -34,25 +34,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<div align="center">
+  		<s:if test="#session.SPRING_SECURITY_LAST_EXCEPTION != null">用户名或者密码有错 </s:if>
+  		<s:property value="#session.SPRING_SECURITY_RANDOM_CODE"/>
+		
 		<s:form action="login" namespace="/" >
 			<s:textfield name="j_username" label="用户名"></s:textfield>
 			<s:password name="j_password" label="密码"></s:password>
-			<s:textfield name="randomCode" label="验证码"/><s:fielderror></s:fielderror>
+			<s:textfield name="j_randomCode" label="验证码"/>
 			<s:submit method="login" value="登录" align="center"/>
 		</s:form>
-		<s:property value="#session.SPRING_SECURITY_LAST_EXCEPTION.extraInformation"/>
-		<s:debug></s:debug>
     <br>  
-    <%
-    
-    Enumeration namesEnumeration = session.getAttributeNames();
-    while(namesEnumeration.hasMoreElements()) {
-    	//System.out.println(namesEnumeration.nextElement());
-    	System.out.println(session.getAttribute(namesEnumeration.nextElement() + ""));
-    }
-    %>  
     <span><img id="codeImg" border=0>再换一张</span>   
-		<s:property value="%{exception.message}"/>${message}
 	</div>
   </body>
 </html>

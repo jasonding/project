@@ -24,6 +24,7 @@
 	<!-- 添加验证码过滤器 -->
 	<beans:bean id="validateRandomCodeFilter" class="com.project.service.security.ValidateRandomCodeFilter">
 		<beans:property name="filterProcessesUrl" value="/login.do" />
+		<beans:property name="filterRedirectUrl" value="/input.do" />
 	</beans:bean>
 	
 	<beans:bean id="daoAuthenticationProvider"  class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">  
