@@ -6,7 +6,6 @@
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd" default-autowire="byName">
 	
 	<http>
-		
 		<form-login 
 			login-page="/input.do"
 			login-processing-url="/login.do"
@@ -19,7 +18,7 @@
 		<custom-filter ref="validateRandomCodeFilter" before="FORM_LOGIN_FILTER" />
 		<custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR" />
 		
-		<logout/>
+		<logout />
 	</http>
 	<!-- 添加验证码过滤器 -->
 	<beans:bean id="validateRandomCodeFilter" class="com.project.service.security.ValidateRandomCodeFilter">

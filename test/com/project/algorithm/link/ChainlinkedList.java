@@ -32,6 +32,5 @@ public class ChainlinkedList {
 		oldPreNode.setNextChainlinked(oldNextNode);
 		oldNextNode.setPreChainlinked(oldPreNode);
 		
-		
 	}
 }

@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.project.dao.UserDao;
 import com.project.domain.mapping.User;
 import com.project.enumeration.Gender;
-import com.project.service.UserService;
+import com.project.service.manage.UserService;
 
 public class SpringTest {
 	@Test
@@ -54,8 +54,8 @@ public class SpringTest {
 		user.setGender(Gender.MAN);
 		user.setCreateTime(new Date());
 		userService.saveOrUpdate(user);
-		User findUser = userService.findByUserName("admin", "admin123");
-		System.out.println(findUser.getName() + ":" + findUser.getPassword() + ":" + findUser.getGender().getName());
+//		User findUser = userService.findByUserName("admin", "admin123");
+//		System.out.println(findUser.getName() + ":" + findUser.getPassword() + ":" + findUser.getGender().getName());
 		
 //		for(int i=0; i<5; i++) {
 //			u = new User();
