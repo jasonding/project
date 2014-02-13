@@ -2,7 +2,6 @@ package com.project.pool.thread;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -16,9 +15,9 @@ public class ThreadPool {
 
 	private static Logger logger = LoggerFactory.getLogger(ThreadPool.class);
 
-	private static int maxTaskSize = 3;
-	private static int initThreadSize = 3;
-	private static int maxThreadSize = 5;
+	private static int maxTaskSize = 200;
+	private static int initThreadSize = 5;
+	private static int maxThreadSize = 100;
 	
 	private static int currentThreadCount = 0;
 
@@ -42,7 +41,8 @@ public class ThreadPool {
 		try {
 			while (commonTask.isEmpty()) {
 				logger.info(Thread.currentThread().getName() + "在等待");
-				full.await(10,TimeUnit.SECONDS);
+				//full.await(10,TimeUnit.SECONDS);
+				full.await();
 				if(currentThreadCount > initThreadSize) {
 					removeThread(Thread.currentThread());
 				}
@@ -68,7 +68,8 @@ public class ThreadPool {
 		try {
 			while (getTotalTask() >= maxTaskSize) {
 				logger.info("commonTask达到最大值 " + getTotalTask() + "【" + Thread.currentThread() + "】等待");
-				empty.await(10, TimeUnit.SECONDS);
+				//empty.await(10, TimeUnit.SECONDS);
+				empty.await();
 				if(currentThreadCount < maxThreadSize) {
 					addThread();
 				}

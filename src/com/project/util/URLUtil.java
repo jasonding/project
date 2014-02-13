@@ -36,7 +36,11 @@ public class URLUtil {
 	private static final int RESPONSE_OK = 200;
 	
 	public static void main(String[] args) {
-		URLDownload("http://data.lehecai.com/img/football/country/9.gif","c:/djd/9.gif",4);
+		//URLDownload("https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/0.gif","d:/qqface/0.gif",0);
+		for(int i=0; i<105; i++) {
+			URLDownloadSingle("https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/"+i+".gif","d:/qqface/"+i+".gif");
+		}
+		
 	}
 
 	/**
@@ -107,7 +111,7 @@ public class URLUtil {
 	 * @param savePath
 	 */
 	public static void URLDownloadSingle(String urlStr,String savePath) {
-		URLDownload(urlStr, savePath, 0);
+		URLDownload(urlStr, savePath, 1);
 	}
 	
 	/**
