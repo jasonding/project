@@ -14,6 +14,10 @@ public class WebConstant {
 	public static final String WEB_USER = "com.project.user";
 	
 	/**
+	 * 存放Gameuser使用的key
+	 */
+	public static final String WEB_GAME_USER = "com.project.game.user";
+	/**
 	 * 保存验证码的key
 	 */
 	public static final String WEB_RANDOM_CODE ="com.project.randomcode";

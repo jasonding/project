@@ -35,9 +35,18 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>cookieFilter</filter-name>
+		<filter-class>com.project.web.filter.CookieFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>cookieFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
@@ -63,7 +72,6 @@
 	  <filter-name>validateRandomCodeFilter</filter-name>
 	  <url-pattern>/login.do</url-pattern>
 	</filter-mapping>
-	 -->
 
 	<filter>
 	  <filter-name>springSecurityFilterChain</filter-name>
@@ -74,6 +82,7 @@
 	  <filter-name>springSecurityFilterChain</filter-name>
 	  <url-pattern>/*</url-pattern>
 	</filter-mapping>
+	 -->
 
 	<filter>
 		<filter-name>struts2</filter-name>

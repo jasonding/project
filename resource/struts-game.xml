@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- game action begin -->
+    <package name="game_user" namespace="/game/user" extends="default">
+        <action name="input"  class="GameUserAction" method="input">
+        	<result name="input">/WEB-INF/page/gamelogin/gameUserInput.jsp</result>
+        </action>
+    
+    	  <action name="manage" class="GameUserAction" method="manage">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">login</param>
+        		<param name="namespace">/game</param>
+        	</result>
+        	<result name="input" type="chain">
+        		<param name="actionName">input</param>
+        		<param name="namespace">/game/user</param>
+        	</result>
+        </action>
+    </package>
+    <package name="game_login" namespace="/game" extends="default">
+        <action name="login"  class="GameLoginAction" method="input">
+        	<result name="input">/gameLogin.jsp</result>
+        </action>
+        <action name="input"  class="GameLoginAction" method="input">
+        	<result name="input">/gameLogin.jsp</result>
+        </action>
+        <action name="main"  class="GameLoginAction" method="main">
+        	<result name="success">/WEB-INF/page/gamelogin/gameLoginSuccess.jsp</result>
+        	<result name="input" type="chain">
+        		<param name="actionName">input</param>
+        	</result>
+        </action>
+        <action name="gameLogin"  class="GameLoginAction" method="gameLogin">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">main</param>
+        	</result>
+        	<result name="input" type="chain">
+        		<param name="actionName">input</param>
+        	</result>
+        </action>
+        <action name="logout"  class="GameLoginAction" method="logout">
+        	<result name="login">/gameLogin.jsp</result>
+        </action>
+    </package>
+    <!-- game action end -->
+</struts>

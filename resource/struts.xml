@@ -157,8 +157,6 @@
     </package>
     <!-- 角色action end -->
     
-    
-    
     <!-- 相册action begin -->
     <package name="album" namespace="/album" extends="default">
         <action name="input" class="AlbumAction" method="input">
@@ -195,5 +193,7 @@
   	</package>
   	-->
     <!-- test Josn end -->
+    
+    <include file="struts-game.xml"></include>
     
 </struts>
