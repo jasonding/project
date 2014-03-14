@@ -11,15 +11,22 @@
         </action>
     
     	  <action name="manage" class="GameUserAction" method="manage">
-        	<result name="success" type="redirectAction">
-        		<param name="actionName">login</param>
-        		<param name="namespace">/game</param>
-        	</result>
+        	<result name="success" >/WEB-INF/page/gamelogin/gameLoginSuccessWiget.jsp</result>
         	<result name="input" type="chain">
         		<param name="actionName">input</param>
         		<param name="namespace">/game/user</param>
         	</result>
         </action>
+<!--    	  <action name="manage" class="GameUserAction" method="manage">-->
+<!--        	<result name="success" type="redirectAction">-->
+<!--        		<param name="actionName">login</param>-->
+<!--        		<param name="namespace">/game</param>-->
+<!--        	</result>-->
+<!--        	<result name="input" type="chain">-->
+<!--        		<param name="actionName">input</param>-->
+<!--        		<param name="namespace">/game/user</param>-->
+<!--        	</result>-->
+<!--        </action>-->
     </package>
     <package name="game_login" namespace="/game" extends="default">
         <action name="login"  class="GameLoginAction" method="input">
@@ -34,10 +41,11 @@
         		<param name="actionName">input</param>
         	</result>
         </action>
+        <action name="loginUI"  class="GameLoginAction" method="loginUI">
+        	<result name="success">/WEB-INF/page/gamelogin/loginUI.jsp</result>
+        </action>
         <action name="gameLogin"  class="GameLoginAction" method="gameLogin">
-        	<result name="success" type="redirectAction">
-        		<param name="actionName">main</param>
-        	</result>
+        	<result name="success">/WEB-INF/page/gamelogin/gameLoginSuccessWiget.jsp</result>
         	<result name="input" type="chain">
         		<param name="actionName">input</param>
         	</result>

@@ -32,6 +32,11 @@ public class GameLoginAction extends BaseAction {
 	public String input() {
 		return INPUT;
 	}
+	
+	public String loginUI() {
+		return SUCCESS;
+	}
+	
 
 	public String gameLogin() {
 		if(NullUtil.isNull(username) || NullUtil.isNull(password)){
@@ -50,6 +55,9 @@ public class GameLoginAction extends BaseAction {
 	}
 	
 	public String main() {
+		return SUCCESS;
+	}
+	public String mainTest() {
 		GameUser gameUser = (GameUser) super.getSession().get(WebConstant.WEB_GAME_USER);
 		if(gameUser == null){
 			return INPUT;

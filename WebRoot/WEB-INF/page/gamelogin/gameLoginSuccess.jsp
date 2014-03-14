@@ -15,16 +15,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="${ctx}/js/jquery-1.4.4.min.js"></script>
   </head>
   
-  <body>
-  <center>
-	<br/><br/>
-	欢迎<s:property value="#session['com.project.game.user'].name"/>登录成功
-	<br/>
-	<br/>
-	用户信息:
-	用户名：<s:property value="#session['com.project.game.user'].name"/><br/>
-	创建时间：<s:date name="#session['com.project.game.user'].createTime" format="yyyy-MM-dd HH:mm:ss" /><br/>
-	<a href="${ctx }/game/user/input.do?gameUser.id=<s:property value="#session['com.project.game.user'].id"/>" onclick="ajax_gameUser_manage()"/>修改用户信息</a> <br/><a href="${ctx }/game/logout.do">退出</a>
-</center>
+  <script type="text/javascript">
+	function regiest(){
+		$.get("${ctx}/game/user/input.do", function(data){
+			$("#form_login_div_id").html(data);
+		});
+	};
+
+	function loginUI(){
+		$.get("${ctx}/game/loginUI.do", function(data){
+			$("#form_login_div_id").html(data);
+		});
+	};
+	function login(){
+		var data = $("#login_form_id").serialize();
+		$.get("${ctx}/game/gameLogin.do", data,function(data){
+			$("#form_login_div_id").html(data);
+		});
+	};
+  </script>
+  
+<body>
+	<s:include value="gameLoginSuccessWiget.jsp"></s:include>  
 </body>
 </html>
